@@ -56,6 +56,14 @@
 
   <div fxFlex>
     <h2>Corporate Leadership</h2>
-    <p>Display the details of the corporate leaders here</p>
+      <div class="container" *ngFor="let leads of lead"> 
+        <div class="col-2">
+          <img style="border-radius: 50%;" src={{leads.image}} alt="Image">
+        </div>
+        <div class="col-10" style="padding-left: 5px; vertical-align: top;">
+          <h4>{{leads.name}}</h4>
+          <p>{{leads.description}}
+        </div>
+      </div>
   </div>
 </div>
