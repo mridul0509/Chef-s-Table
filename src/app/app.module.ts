@@ -31,6 +31,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms'; 
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatSliderModule} from '@angular/material/slider';
+import { HttpClientModule } from '@angular/common/http';
+import { baseURL } from './shared/baseurl';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -42,7 +51,8 @@ import { FormsModule } from '@angular/forms';
     AboutComponent,
     HomeComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
@@ -59,11 +69,23 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatSliderModule,
+    HttpClientModule,
   ],
-  providers: [DishService,PromotionService,LeaderService],
+  providers: [
+    DishService,
+    PromotionService,
+    LeaderService,
+    { provide : 'BaseURL', useValue : baseURL},
+    ProcessHTTPMsgService,
+  ],
   entryComponents: [
     LoginComponent
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
