@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Promotion } from '../shared/promotion';
-import { PROMOTIONS } from '../shared/promotions';
 import { Observable, of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import {baseURL} from '../shared/baseurl';
 import {HttpClient} from '@angular/common/http';
 import { ProcessHTTPMsgService } from './process-httpmsg.service';
@@ -35,7 +34,8 @@ export class PromotionService {
   }
 
   getPromotionIds(): Observable<number[] | any> {
-    return this.getPromotions().pipe(map(promotions => promotions.map(promotion => promotion.id)));
+    return this.getPromotions().pipe(map(promotions => promotions.map(promotion => promotion.id)))
+    .pipe(catchError(this.processHTTPMsgService.handleError));
   }
   
 

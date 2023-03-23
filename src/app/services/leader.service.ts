@@ -37,7 +37,8 @@ export class LeaderService {
   }
 
   getleaderIds(): Observable<number[] | any> {
-    return this.getLeaders().pipe(map(leaders => leaders.map(leader => leader.id)));
+    return this.getLeaders().pipe(map(leaders => leaders.map(leader => leader.id)))
+    .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   constructor(private http: HttpClient,
